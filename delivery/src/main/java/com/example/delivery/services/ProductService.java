@@ -44,7 +44,12 @@ public class ProductService {
 	public Product findByProductIdNative(Integer id) {
 		return repositoryJpa.findByProductnative(id);
 	}
-	
-	
 
+	public List<Product> findAllProductsJPQL(){
+		return repositoryJpa.findAllProducts();
+	}
+
+	public List<Product> findAllProductsNative(){
+		return repositoryJpa.findAllProductsNative();
+	}
 }

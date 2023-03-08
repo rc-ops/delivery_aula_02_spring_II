@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.example.delivery.entities.Product;
 
+import java.util.List;
+
 public interface ProductRepositoryJPA extends JpaRepository<Product, Long>{
 	
 	
@@ -14,4 +16,10 @@ public interface ProductRepositoryJPA extends JpaRepository<Product, Long>{
 	
 	@Query(value="SELECT p.* FROM tb_product p  WHERE p.id = :id", nativeQuery = true)
 	Product findByProductnative(Integer id);
+
+	@Query("SELECT p FROM Product p")
+	List<Product> findAllProducts();
+
+	@Query(value="SELECT p.* FROM tb_product p", nativeQuery = true)
+	List<Product> findAllProductsNative();
 }

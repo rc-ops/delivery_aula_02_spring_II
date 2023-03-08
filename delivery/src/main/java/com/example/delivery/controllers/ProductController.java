@@ -2,7 +2,6 @@ package com.example.delivery.controllers;
 
 import java.util.List;
 
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,4 +44,13 @@ public class ProductController {
 		return service.findByProductIdNative(id);
 	}
 
+	@GetMapping("/productsjpql")
+	public List<Product> findAllProductsJPQL(){
+		return service.findAllProductsJPQL();
+	}
+
+	@GetMapping("/productsnative")
+	public List<Product> findAllProductsNative(){
+		return service.findAllProductsNative();
+	}
 }

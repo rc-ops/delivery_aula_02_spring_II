@@ -2,8 +2,10 @@ package com.example.delivery.controllers;
 
 import java.util.List;
 
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +33,16 @@ public class ProductController {
 	@GetMapping("/productsDto")
 	public List<ProductDTO> findAllProductDto(){
 		return service.findAllProductsDto();
+	}
+	
+	@GetMapping("/product/{id}")
+	public Product findByProductId (@PathVariable Integer id) {
+		return service.findByProductId(id);
+	}
+	
+	@GetMapping("/productnative/{id}")
+	public Product findByProductIdNative (@PathVariable Integer id) {
+		return service.findByProductIdNative(id);
 	}
 
 }

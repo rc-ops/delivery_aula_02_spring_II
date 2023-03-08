@@ -5,24 +5,40 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tb_order")
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String andress;
+	private String address;
 	private Double latitude;
 	private Double longitude;
 	private Instant moment;
 	private OrderStatus status;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_order_product", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
 	private Set<Product> products = new HashSet<>();
 	
 	public Order() {}
 
-	public Order(Long id, String andress, Double latitude, Double longitude, Instant instant, OrderStatus status,
+	public Order(Long id, String address, Double latitude, Double longitude, Instant instant, OrderStatus status,
 			Set<Product> products) {
 		this.id = id;
-		this.andress = andress;
+		this.address = address;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.moment = instant;
@@ -38,12 +54,12 @@ public class Order implements Serializable {
 		this.id = id;
 	}
 
-	public String getAndress() {
-		return andress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAndress(String andress) {
-		this.andress = andress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Double getLatitude() {
@@ -88,7 +104,7 @@ public class Order implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", andress=" + andress + ", latitude=" + latitude + ", longitude=" + longitude
+		return "Order [id=" + id + ", andress=" + address + ", latitude=" + latitude + ", longitude=" + longitude
 				+ ", moment=" + moment + ", status=" + status + ", products=" + products + "]";
 	}
 	

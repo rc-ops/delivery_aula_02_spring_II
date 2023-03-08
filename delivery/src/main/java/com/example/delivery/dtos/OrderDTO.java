@@ -11,7 +11,7 @@ import com.example.delivery.entities.OrderStatus;
 public class OrderDTO {
 	
 	private Long id;
-	private String andress;
+	private String address;
 	private Double latitude;
 	private Double longitude;
 	private Instant moment;
@@ -23,10 +23,10 @@ public class OrderDTO {
 
 	
 	
-	public OrderDTO(Long id, String andress, Double latitude, Double longitude, Instant moment, OrderStatus status,
+	public OrderDTO(Long id, String address, Double latitude, Double longitude, Instant moment, OrderStatus status,
 			Double total, List<ProductDTO> products) {
 		this.id = id;
-		this.andress = andress;
+		this.address = address;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.moment = moment;
@@ -39,7 +39,7 @@ public class OrderDTO {
 
 	public OrderDTO(Order entity) {
 		id = entity.getId();
-		andress = entity.getAndress();
+		address = entity.getAddress();
 		latitude = entity.getLatitude();
 		longitude = entity.getLongitude();
 		moment = entity.getMoment();
@@ -55,12 +55,12 @@ public class OrderDTO {
 		this.id = id;
 	}
 
-	public String getAndress() {
-		return andress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAndress(String andress) {
-		this.andress = andress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Double getLatitude() {
